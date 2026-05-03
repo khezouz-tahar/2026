@@ -1,0 +1,16 @@
+name: Mon premier workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dire-bonjour:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout le code
+        uses: actions/checkout@v3
+
+      - name: Dire bonjour
+        run: echo "Bonjour! Le code a été pushé!"
