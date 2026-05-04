@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Tahar Khezouz · SDET Junior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0c0f;
+      --bg2: #13141a;
+      --bg3: #1c1e27;
+      --accent: #00e5a0;
+      --accent2: #0af;
+      --text: #ecedf2;
+      --muted: #7a7d8c;
+      --border: rgba(255,255,255,0.07);
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(11,12,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 7rem 2.5rem 5rem;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.75rem;
+    }
+    .name {
+      font-family: var(--font-heading);
+      font-size: clamp(2.6rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+    .name .g { color: var(--accent); }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      border: 1px solid rgba(0,229,160,0.25);
+      background: rgba(0,229,160,0.06);
+      padding: 6px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      margin-top: 1rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      padding-top: 4px;
+    }
+    .meta-item {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .meta-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .meta-open { color: var(--accent); margin-top: 4px; }
+
+    .bio {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 300;
+      border-left: 2px solid rgba(0,229,160,0.3);
+      padding-left: 1.2rem;
+      margin-top: 1.5rem;
+      max-width: 680px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section { margin-bottom: 3rem; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before { content: '//'; opacity: 0.5; font-size: 10px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .sub-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── EXPÉRIENCE ── */
+    .xp-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .xp-item:hover {
+      border-color: rgba(0,229,160,0.25);
+      transform: translateY(-2px);
+    }
+    .xp-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--accent);
+    }
+    .xp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 4px;
+    }
+    .xp-role {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .xp-date {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+    .xp-company {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .xp-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      background: rgba(0,229,160,0.08);
+      border: 1px solid rgba(0,229,160,0.18);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .xp-badge.b2 {
+      background: rgba(0,170,255,0.08);
+      border-color: rgba(0,170,255,0.2);
+      color: var(--accent2);
+    }
+    .xp-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .xp-list li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+      font-weight: 300;
+    }
+    .xp-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(0,229,160,0.4);
+    }
+
+    /* ── TWO COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* ── SKILLS ── */
+    .skill-group {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s;
+    }
+    .skill-group:hover { border-color: rgba(0,229,160,0.2); }
+    .skill-group-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 9px;
+      letter-spacing: 0.05em;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .tag.g {
+      background: rgba(0,229,160,0.08);
+      border-color: rgba(0,229,160,0.2);
+      color: var(--accent);
+    }
+    .tag.b {
+      background: rgba(0,170,255,0.08);
+      border-color: rgba(0,170,255,0.2);
+      color: var(--accent2);
+    }
+
+    /* ── QUALITÉS ── */
+    .quali-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .quali-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.875rem 1rem;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s;
+    }
+    .quali-card:hover { border-color: rgba(0,229,160,0.2); }
+    .qbullet {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── CERTIF ── */
+    .certif-block {
+      background: var(--bg2);
+      border: 1px solid rgba(0,229,160,0.2);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .certif-ring {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,229,160,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .certif-name {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .certif-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── LANGUES ── */
+    .lang-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .lang-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .lang-name {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .lang-level {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .lang-bar { height: 2px; background: var(--bg3); border-radius: 2px; }
+    .lang-fill-g { height: 100%; border-radius: 2px; background: var(--accent); }
+    .lang-fill-b { height: 100%; border-radius: 2px; background: var(--accent2); }
+
+    /* ── FORMATION ── */
+    .edu-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+      height: 100%;
+    }
+    .edu-item:hover { border-color: rgba(0,170,255,0.25); }
+    .edu-degree {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .edu-school {
+      font-size: 12px;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+    .edu-date {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+
+    .cv-footer {
+      margin-top: 4rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cv-footer-txt {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .cv-footer-open {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .footer-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      .page { padding: 6rem 1.2rem 4rem; }
+      .header-top { flex-direction: column; gap: 1rem; }
+      .meta-stack { align-items: flex-start; }
+      .two-col { grid-template-columns: 1fr; gap: 1rem; }
+      .quali-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">tahar.dev</a>
+    <ul class="nav-links">
+      <li><a href="index.html#stack">Stack</a></li>
+      <li><a href="index.html#projets">Projets</a></li>
+      <li><a href="index.html#a-propos">À propos</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE -->
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-top">
+        <div>
+          <h1 class="name">Tahar <span class="g">Khezouz</span></h1>
+          <div class="hero-badge">SDET Junior · Test Automation · QA</div>
+        </div>
+        <div class="meta-stack">
+          <div class="meta-item"><span class="meta-dot"></span>Montréal, Québec</div>
+          <div class="meta-item"><span class="meta-dot"></span>Canada</div>
+          <div class="meta-item meta-open">Ouvert aux opportunités</div>
+        </div>
+      </div>
+      <p class="bio">
+        Titulaire d'un AEC en assurance qualité logicielle et d'un baccalauréat en génie informatique,
+        je mets mon expertise en tests manuels, analyse de défauts et automatisation au service de la qualité logicielle.
+        Rigoureux, proactif et autonome dans des environnements Agile/Scrum.
+      </p>
+    </div>
+
+    <!-- EXPÉRIENCE -->
+    <div class="section">
+      <div class="section-label">expérience</div>
+
+      <div class="xp-item">
+        <div class="xp-header">
+          <div class="xp-role">Analyste en assurance qualité logicielle</div>
+          <div class="xp-date">oct. 2023 — déc. 2023</div>
+        </div>
+        <div class="xp-company">
+          Entraidant
+          <span class="xp-badge">Stage</span>
+          <span class="xp-badge">Remote · Montréal</span>
+        </div>
+        <ul class="xp-list">
+          <li>Rédaction de la stratégie de test, du plan de test et des scénarios de test</li>
+          <li>Élaboration et exécution des cas de tests fonctionnels manuels</li>
+          <li>Documentation des anomalies et déviations détectées</li>
+          <li>Rédaction du rapport de test manuel</li>
+          <li>Automatisation des fonctionnalités avec RobotFramework</li>
+        </ul>
+      </div>
+
+      <div class="xp-item">
+        <div class="xp-header">
+          <div class="xp-role">Technicien réseaux informatique</div>
+          <div class="xp-date">août 2018 — sept. 2021</div>
+        </div>
+        <div class="xp-company">
+          OPGI
+          <span class="xp-badge b2">CDD · Sur site · Algérie</span>
+        </div>
+        <ul class="xp-list">
+          <li>Gestion et maintenance du parc informatique et des équipements réseau</li>
+          <li>Support technique aux utilisateurs</li>
+        </ul>
+      </div>
+
+      <div class="xp-item">
+        <div class="xp-header">
+          <div class="xp-role">Technicien informatique</div>
+          <div class="xp-date">févr. 2010 — mai 2018</div>
+        </div>
+        <div class="xp-company">
+          ITS CO, LTD
+          <span class="xp-badge b2">CDD · Sur site · Algérie</span>
+        </div>
+        <ul class="xp-list">
+          <li>Installation et configuration des postes de travail et équipements</li>
+          <li>Maintenance préventive et corrective, support aux usagers</li>
+        </ul>
+      </div>
+
+      <div class="xp-item">
+        <div class="xp-header">
+          <div class="xp-role">Stage de fin d'études</div>
+          <div class="xp-date">2009</div>
+        </div>
+        <div class="xp-company">
+          Sonatrach
+          <span class="xp-badge">Stage · Algérie</span>
+        </div>
+        <ul class="xp-list">
+          <li>Développement d'une application web GMAO — PHP, JavaScript</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COMPÉTENCES -->
+    <div class="section">
+      <div class="section-label">compétences</div>
+      <div class="two-col">
+        <div>
+          <div class="skill-group">
+            <div class="skill-group-name">// automatisation</div>
+            <div class="skill-tags">
+              <span class="tag g">Playwright</span>
+              <span class="tag g">Selenium</span>
+              <span class="tag">RobotFramework</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">// api &amp; performance</div>
+            <div class="skill-tags">
+              <span class="tag g">Postman</span>
+              <span class="tag">JMeter</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">// ci/cd &amp; version</div>
+            <div class="skill-tags">
+              <span class="tag g">GitHub Actions</span>
+              <span class="tag">GitLab CI/CD</span>
+              <span class="tag">Git</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group">
+            <div class="skill-group-name">// outils qa</div>
+            <div class="skill-tags">
+              <span class="tag">Jira</span>
+              <span class="tag">Xray</span>
+              <span class="tag">Confluence</span>
+              <span class="tag">TestLink</span>
+              <span class="tag">Redmine</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">// langages</div>
+            <div class="skill-tags">
+              <span class="tag b">TypeScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Java</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">// méthodologies</div>
+            <div class="skill-tags">
+              <span class="tag">Agile / Scrum</span>
+              <span class="tag">Kanban</span>
+              <span class="tag">Pairwise</span>
+              <span class="tag">ISTQB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUALITÉS -->
+    <div class="section">
+      <div class="section-label">qualités professionnelles</div>
+      <div class="quali-grid">
+        <div class="quali-card"><span class="qbullet"></span>Rigoureux &amp; proactif</div>
+        <div class="quali-card"><span class="qbullet"></span>Bon esprit d'équipe</div>
+        <div class="quali-card"><span class="qbullet"></span>Orienté qualité &amp; client</div>
+        <div class="quali-card"><span class="qbullet"></span>Autonome &amp; sens de l'initiative</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATION & LANGUES -->
+    <div class="section">
+      <div class="section-label">certification &amp; langues</div>
+      <div class="two-col">
+        <div>
+          <div class="sub-label">// certification</div>
+          <div class="certif-block">
+            <div class="certif-ring">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7l3 3 6-6" stroke="#00e5a0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="certif-name">ISTQB Foundation</div>
+              <div class="certif-sub">En cours de préparation</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sub-label">// langues</div>
+          <div class="lang-item">
+            <div class="lang-top">
+              <span class="lang-name">Français</span>
+              <span class="lang-level">Capacité complète</span>
+            </div>
+            <div class="lang-bar"><div class="lang-fill-g" style="width:100%"></div></div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-top">
+              <span class="lang-name">Anglais</span>
+              <span class="lang-level">Intermédiaire</span>
+            </div>
+            <div class="lang-bar"><div class="lang-fill-b" style="width:60%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMATION -->
+    <div class="section">
+      <div class="section-label">formation</div>
+      <div class="two-col">
+        <div class="edu-item">
+          <div class="edu-degree">AEC — Spécialiste en qualité logicielle</div>
+          <div class="edu-school">Collège de Bois-de-Boulogne · Montréal</div>
+          <div class="edu-date">oct. 2022 — déc. 2023</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Ingénieur en informatique — Computer Science</div>
+          <div class="edu-school">Université Skikda, Algérie</div>
+          <div class="edu-date">2003 — 2009 · Évaluation comparative : Baccalauréat en génie informatique</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CV FOOTER -->
+    <div class="cv-footer">
+      <span class="cv-footer-txt">tahar.dev · CV · 2025</span>
+      <span class="cv-footer-open"><span class="footer-dot"></span>Ouvert aux opportunités</span>
+    </div>
+
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer>
+    &copy; 2025 Tahar &nbsp;·&nbsp; Construit avec du HTML pur &amp; de la rigueur QA
+  </footer>
+
+</body>
+</html>

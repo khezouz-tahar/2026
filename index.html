@@ -48,7 +48,7 @@
       color: var(--accent);
       letter-spacing: 0.05em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
       font-size: 13px;
       color: var(--muted);
@@ -57,6 +57,19 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
+    .nav-cv {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent) !important;
+      border: 1px solid rgba(0,229,160,0.35);
+      padding: 5px 14px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cv:hover {
+      background: rgba(0,229,160,0.1);
+      color: var(--accent) !important;
+    }
 
     /* HERO */
     .hero {
@@ -130,6 +143,12 @@
       border: 1px solid var(--border);
     }
     .btn-outline:hover { border-color: rgba(255,255,255,0.25); background: var(--bg2); }
+    .btn-cv {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(0,229,160,0.4);
+    }
+    .btn-cv:hover { background: rgba(0,229,160,0.08); border-color: var(--accent); transform: translateY(-1px); }
 
     /* GRID DECO */
     .hero-grid {
@@ -308,6 +327,7 @@
       <li><a href="#projets">Projets</a></li>
       <li><a href="#a-propos">À propos</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="cv-tahar-khezouz.html" class="nav-cv" target="_blank">📄 Mon CV</a></li>
     </ul>
   </nav>
 
@@ -323,6 +343,7 @@
         </p>
         <div class="hero-ctas">
           <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
+          <a href="cv-tahar-khezouz.html" class="btn btn-cv" target="_blank">📄 Mon CV</a>
           <a href="#contact" class="btn btn-outline">Me contacter</a>
         </div>
       </div>
@@ -459,6 +480,7 @@
         <a href="https://github.com" class="contact-link">GitHub</a>
         <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
         <a href="mailto:hello@tahar.dev" class="contact-link">Email</a>
+        <a href="cv-tahar-khezouz.html" class="contact-link" target="_blank">📄 Mon CV</a>
       </div>
     </div>
   </section>
