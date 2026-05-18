@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tahar Khezouz — QA Engineer | bugtogreen.com</title>
   <meta name="description" content="QA Engineer spécialisé en automatisation E2E, CI/CD, tests de sécurité et accessibilité. Disponible pour missions et collaborations à Montréal." />
-  <meta name="keywords" content="QA Engineer, Playwright, TypeScript, GitHub Actions, Postman, JMeter, OWASP ZAP, Montréal" />
   <meta property="og:title" content="Tahar Khezouz — QA Engineer" />
   <meta property="og:description" content="Stratégies de test robustes · Automatisation E2E · CI/CD pipelines" />
   <meta property="og:url" content="https://www.bugtogreen.com" />
@@ -14,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,325 +32,334 @@
       --border:       #e5e7eb;
       --mono:         'DM Mono', monospace;
       --head:         'Syne', sans-serif;
+      --space-xs:     0.5rem;
+      --space-sm:     0.75rem;
+      --space-md:     1.2rem;
+      --space-lg:     2.5rem;
+      --space-xl:     4rem;
+      --text-xs:      10px;
+      --text-sm:      11px;
+      --text-base:    13px;
+      --text-md:      14px;
+      --text-lg:      1.3rem;
+      --text-xxl:     3rem;
+      --max-width:    1200px;
+      --nav-height:   56px;
+      --col-gap:      14px;
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: var(--head); color: var(--text); background: var(--bg); line-height: 1.5; }
 
-    body {
-      font-family: var(--head);
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.5;
-    }
-
-    /* ─── NAVIGATION ─── */
+    /* ── NAV ── */
     .nav-bar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #fff;
-      padding: 0.85rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      background: #fff; height: var(--nav-height);
       border-bottom: 2px solid var(--green);
       box-shadow: 0 1px 8px rgba(22,163,74,0.08);
     }
+    .nav-inner {
+      max-width: var(--max-width); margin: 0 auto;
+      padding: 0 var(--space-lg); height: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+    }
     .nav-brand { font-family: var(--mono); font-size: 15px; font-weight: 500; text-decoration: none; color: inherit; }
-    .nav-brand .bug   { color: var(--text); }
-    .nav-brand .to    { color: var(--muted); }
-    .nav-brand .green { color: var(--green); }
-    .nav-brand .dot   { color: #d1d5db; }
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-link  { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-brand .to  { color: var(--muted); }
+    .nav-brand .grn { color: var(--green); }
+    .nav-brand .dot { color: #d1d5db; }
+    .nav-links { display: flex; gap: var(--space-md); align-items: center; }
+    .nav-link  { font-family: var(--mono); font-size: var(--text-sm); color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-link:hover { color: var(--green); }
     .nav-cv {
-      font-family: var(--mono); font-size: 11px;
+      font-family: var(--mono); font-size: var(--text-sm);
       background: var(--green); color: #fff;
-      padding: 5px 14px; border-radius: 5px; text-decoration: none;
-      transition: background 0.2s;
+      padding: 5px 14px; border-radius: 5px; text-decoration: none; transition: background 0.2s;
     }
     .nav-cv:hover { background: var(--green2); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--text); font-size: 22px; }
+    .nav-mobile {
+      display: none; flex-direction: column; gap: 2px;
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: var(--space-sm) var(--space-lg);
+    }
+    .nav-mobile a {
+      font-family: var(--mono); font-size: 13px; color: var(--muted);
+      text-decoration: none; padding: 9px 0; border-bottom: 1px solid var(--border);
+    }
+    .nav-mobile a:last-child { border-bottom: none; color: var(--green); font-weight: 500; }
+    .nav-mobile.open { display: flex; }
 
-    /* ─── HERO ─── */
+    /* ── HERO ── */
     .hero {
-      background: #fff;
-      padding: 4rem 2.5rem 3rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+      background: #fff; padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .hero-inner {
+      max-width: var(--max-width); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: var(--space-lg); align-items: center;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      top: -120px; right: -120px;
-      width: 450px; height: 450px;
-      background: radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%);
+      content: ''; position: absolute; top: -120px; right: 0;
+      width: 50%; height: 120%;
+      background: radial-gradient(ellipse at right top, rgba(34,197,94,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--green-mid), var(--green2));
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--green-mid), var(--green2));
     }
     .avail {
       display: inline-flex; align-items: center; gap: 7px;
-      background: var(--green-light);
-      border: 1px solid var(--green-border);
-      color: var(--green2);
-      font-family: var(--mono); font-size: 11px;
-      padding: 4px 14px; border-radius: 20px;
-      margin-bottom: 1.4rem; font-weight: 500;
+      background: var(--green-light); border: 1px solid var(--green-border);
+      color: var(--green2); font-family: var(--mono); font-size: var(--text-sm);
+      padding: 4px 14px; border-radius: 20px; margin-bottom: var(--space-sm); font-weight: 500;
     }
     .avail::before {
-      content: '';
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--green-mid);
-      animation: blink 1.5s ease-in-out infinite;
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green-mid); animation: blink 1.5s ease-in-out infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
     .hero h1 {
-      font-size: 3rem; font-weight: 800;
-      line-height: 1.1; margin-bottom: 0.6rem;
-      letter-spacing: -0.03em;
+      font-size: var(--text-xxl); font-weight: 800;
+      line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.03em;
     }
     .hero h1 .role { color: var(--green); display: block; }
-    .hero p {
-      font-family: var(--mono); font-size: 13px;
-      color: var(--muted); max-width: 520px;
-      line-height: 1.9; margin-bottom: 1.8rem;
+    .hero-desc {
+      font-family: var(--mono); font-size: var(--text-base);
+      color: var(--muted); max-width: 520px; line-height: 1.9; margin-bottom: var(--space-md);
     }
-    .hero p .pass { color: var(--green); font-weight: 500; }
+    .hero-desc .pass { color: var(--green); font-weight: 500; }
     .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero-visual { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); }
+    .hero-avatar {
+      width: clamp(80px,10vw,120px); height: clamp(80px,10vw,120px); border-radius: 50%;
+      background: linear-gradient(135deg, var(--green2), var(--green-mid));
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(1.4rem,3vw,2.2rem); font-weight: 800; color: #fff;
+      border: 3px solid var(--green-border); box-shadow: 0 4px 24px rgba(22,163,74,0.2);
+    }
+    .hero-badge-stack { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+    .hero-badge {
+      background: var(--green-light); border: 1px solid var(--green-border);
+      color: var(--green2); font-family: var(--mono);
+      font-size: 10px; padding: 3px 10px; border-radius: 10px; font-weight: 500; white-space: nowrap;
+    }
 
-    /* ─── BUTTONS ─── */
+    /* ── BUTTONS ── */
     .btn-green {
-      background: var(--green); color: #fff;
-      font-family: var(--head); font-weight: 700; font-size: 13px;
-      padding: 11px 24px; border-radius: 6px; border: none;
-      cursor: pointer; text-decoration: none; display: inline-block;
-      transition: background 0.2s;
+      background: var(--green); color: #fff; font-family: var(--head);
+      font-weight: 700; font-size: var(--text-base); padding: 11px 24px;
+      border-radius: 6px; border: none; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: background 0.2s; white-space: nowrap;
     }
     .btn-green:hover { background: var(--green2); }
     .btn-green-dark {
-      background: var(--green-dark); color: #fff;
-      font-family: var(--head); font-weight: 700; font-size: 13px;
-      padding: 11px 24px; border-radius: 6px; border: none;
-      cursor: pointer; text-decoration: none; display: inline-block;
-      transition: background 0.2s;
+      background: var(--green-dark); color: #fff; font-family: var(--head);
+      font-weight: 700; font-size: var(--text-base); padding: 11px 24px;
+      border-radius: 6px; border: none; cursor: pointer; text-decoration: none;
+      display: inline-block; transition: background 0.2s; white-space: nowrap;
     }
     .btn-green-dark:hover { background: #0f3d20; }
     .btn-outline {
-      background: #fff; color: var(--text);
-      font-family: var(--head); font-weight: 500; font-size: 13px;
-      padding: 11px 24px; border-radius: 6px;
-      border: 1px solid var(--border);
+      background: #fff; color: var(--text); font-family: var(--head);
+      font-weight: 500; font-size: var(--text-base); padding: 11px 24px;
+      border-radius: 6px; border: 1px solid var(--border);
       cursor: pointer; text-decoration: none; display: inline-block;
-      transition: all 0.2s;
+      transition: all 0.2s; white-space: nowrap;
     }
     .btn-outline:hover { border-color: var(--green); color: var(--green); }
 
-    /* ─── STATS ─── */
+    /* ── STATS ── */
     .stats-row {
       display: grid; grid-template-columns: repeat(4,1fr);
       background: var(--bg3);
-      border-top: 1px solid var(--green-border);
-      border-bottom: 1px solid var(--green-border);
+      border-top: 1px solid var(--green-border); border-bottom: 1px solid var(--green-border);
     }
     .stat {
-      padding: 1.3rem 1rem; text-align: center;
-      border-right: 1px solid var(--green-border);
+      padding: clamp(0.8rem,2vw,1.3rem) 1rem;
+      text-align: center; border-right: 1px solid var(--green-border);
     }
     .stat:last-child { border-right: none; }
-    .stat-num {
-      font-size: 1.8rem; font-weight: 800;
-      color: var(--green); display: block; line-height: 1;
-    }
-    .stat-lbl {
-      font-family: var(--mono); font-size: 10px;
-      color: var(--muted); margin-top: 5px; display: block;
-    }
+    .stat-num { font-size: clamp(1.3rem,3vw,1.9rem); font-weight: 800; color: var(--green); display: block; line-height: 1; }
+    .stat-lbl { font-family: var(--mono); font-size: var(--text-xs); color: var(--muted); margin-top: 5px; display: block; }
 
-    /* ─── SECTIONS ─── */
-    section { padding: 2.5rem 2.5rem; border-bottom: 1px solid var(--border); background: #fff; }
+    /* ── SECTIONS ── */
+    section { padding: var(--space-lg); border-bottom: 1px solid var(--border); background: #fff; }
     section:nth-of-type(even) { background: var(--bg2); }
+    .sec-inner { max-width: var(--max-width); margin: 0 auto; }
     .sec-label {
-      font-family: var(--mono); font-size: 10px; color: var(--green);
-      letter-spacing: 0.12em; text-transform: uppercase;
-      margin-bottom: 0.5rem; font-weight: 500;
+      font-family: var(--mono); font-size: var(--text-xs); color: var(--green);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; font-weight: 500;
     }
-    .sec-title {
-      font-size: 1.4rem; font-weight: 800;
-      margin-bottom: 1.6rem; letter-spacing: -0.02em; color: var(--text);
-    }
+    .sec-title { font-size: var(--text-lg); font-weight: 800; margin-bottom: var(--space-md); letter-spacing: -0.02em; color: var(--text); }
 
-    /* ─── STACK ─── */
-    .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 10px; }
-    .tool-chip {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 14px;
-      display: flex; align-items: center; gap: 10px;
-      transition: all 0.2s;
-    }
+    /* ── STACK ── */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(130px,15vw,180px),1fr)); gap: var(--col-gap); }
+    .tool-chip { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; transition: all 0.2s; }
     .tool-chip:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(22,163,74,0.1); }
-    .tool-icon {
-      width: 36px; height: 36px; border-radius: 6px;
-      background: var(--green-light);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 17px; flex-shrink: 0;
-    }
-    .tool-name { font-size: 13px; font-weight: 700; color: var(--text); }
-    .tool-cat  { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .tool-icon { width: 34px; height: 34px; border-radius: 6px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .tool-name { font-size: var(--text-md); font-weight: 700; color: var(--text); }
+    .tool-cat  { font-family: var(--mono); font-size: var(--text-xs); color: var(--muted); }
 
-    /* ─── PROJECTS ─── */
-    .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(240px,40%,500px),1fr)); gap: var(--col-gap); }
     .proj-card {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.4rem;
-      transition: all 0.2s; text-decoration: none;
-      color: inherit; display: block;
+      background: #fff; border: 1px solid var(--border); border-radius: 10px;
+      padding: clamp(1rem,2vw,1.4rem); transition: all 0.2s; text-decoration: none; color: inherit; display: block;
     }
-    .proj-card:hover {
-      border-color: var(--green);
-      box-shadow: 0 4px 20px rgba(22,163,74,0.1);
-      transform: translateY(-2px);
-    }
-    .proj-card.wip { border-style: dashed; opacity: 0.55; cursor: default; pointer-events: none; }
-    .proj-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .proj-type { font-family: var(--mono); font-size: 10px; color: var(--green); font-weight: 500; }
-    .proj-arrow { font-size: 13px; color: var(--muted); }
-    .proj-title { font-size: 14px; font-weight: 700; margin-bottom: 7px; line-height: 1.3; color: var(--text); }
-    .proj-desc  { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
-    .proj-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tag {
-      background: var(--green-light); color: var(--green2);
-      font-family: var(--mono); font-size: 10px;
-      padding: 2px 9px; border-radius: 4px; font-weight: 500;
-    }
+    .proj-card:hover { border-color: var(--green); box-shadow: 0 4px 20px rgba(22,163,74,0.1); transform: translateY(-2px); }
+    .proj-card.wip { border-style: dashed; opacity: 0.5; cursor: default; pointer-events: none; }
+    .proj-top  { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .proj-type { font-family: var(--mono); font-size: var(--text-xs); color: var(--green); font-weight: 500; }
+    .proj-arrow{ font-size: 13px; color: var(--muted); }
+    .proj-title{ font-size: var(--text-md); font-weight: 700; margin-bottom: 7px; line-height: 1.3; color: var(--text); }
+    .proj-desc { font-family: var(--mono); font-size: var(--text-xs); color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag { background: var(--green-light); color: var(--green2); font-family: var(--mono); font-size: var(--text-xs); padding: 2px 9px; border-radius: 4px; font-weight: 500; }
 
-    /* ─── ABOUT ─── */
-    .about-inner { display: grid; grid-template-columns: 170px 1fr; gap: 2.5rem; align-items: start; }
+    /* ── ABOUT ── */
+    .about-inner { display: grid; grid-template-columns: clamp(130px,15vw,180px) 1fr; gap: var(--space-lg); align-items: start; }
     .avatar-block { display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .avatar {
-      width: 92px; height: 92px; border-radius: 50%;
+      width: clamp(70px,8vw,95px); height: clamp(70px,8vw,95px); border-radius: 50%;
       background: linear-gradient(135deg, var(--green2), var(--green-mid));
       display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; font-weight: 800; color: #fff;
+      font-size: clamp(1.2rem,2.5vw,1.9rem); font-weight: 800; color: #fff;
       border: 3px solid var(--green-border);
     }
-    .name-lbl  { font-size: 14px; font-weight: 700; color: var(--text); text-align: center; }
-    .role-lbl  { font-family: var(--mono); font-size: 10px; color: var(--muted); }
-    .avail-sm  {
+    .name-lbl { font-size: var(--text-md); font-weight: 700; color: var(--text); text-align: center; }
+    .role-lbl { font-family: var(--mono); font-size: var(--text-xs); color: var(--muted); }
+    .avail-sm {
       background: var(--green-light); border: 1px solid var(--green-border);
-      color: var(--green2); font-family: var(--mono); font-size: 10px;
+      color: var(--green2); font-family: var(--mono); font-size: var(--text-xs);
       padding: 4px 10px; border-radius: 12px; text-align: center; font-weight: 500;
     }
-    .about-text p { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.9; margin-bottom: 0.9rem; }
+    .about-text p { font-family: var(--mono); font-size: var(--text-base); color: var(--muted); line-height: 1.9; margin-bottom: 0.9rem; }
     .about-text strong { color: var(--text); font-weight: 500; }
 
-    /* ─── TIMELINE ─── */
-    .timeline {
-      border-left: 3px solid var(--green-border);
-      padding-left: 1.6rem;
-      display: flex; flex-direction: column; gap: 1.4rem;
-    }
+    /* ── TIMELINE ── */
+    .timeline { border-left: 3px solid var(--green-border); padding-left: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); }
     .tl-item { position: relative; }
     .tl-item::before {
-      content: '';
-      position: absolute; left: -1.9rem; top: 4px;
+      content: ''; position: absolute; left: calc(-1 * var(--space-md) - 4px); top: 4px;
       width: 10px; height: 10px; border-radius: 50%;
-      background: var(--green); border: 2px solid #fff;
-      box-shadow: 0 0 0 2px var(--green-border);
+      background: var(--green); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--green-border);
     }
-    .tl-date  { font-family: var(--mono); font-size: 10px; color: var(--green); margin-bottom: 3px; font-weight: 500; }
-    .tl-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; color: var(--text); }
-    .tl-detail{ font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .tl-date  { font-family: var(--mono); font-size: var(--text-xs); color: var(--green); margin-bottom: 3px; font-weight: 500; }
+    .tl-title { font-size: var(--text-base); font-weight: 700; margin-bottom: 2px; color: var(--text); }
+    .tl-detail{ font-family: var(--mono); font-size: var(--text-xs); color: var(--muted); }
 
-    /* ─── CONTACT ─── */
-    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: stretch; }
+    /* ── CONTACT ── */
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); align-items: stretch; }
     .contact-links { display: flex; flex-direction: column; gap: 9px; }
     .contact-link {
       display: flex; align-items: center; gap: 12px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 12px 16px;
-      color: var(--text); text-decoration: none;
-      font-size: 13px; font-weight: 500; transition: all 0.2s;
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 16px; color: var(--text); text-decoration: none;
+      font-size: var(--text-base); font-weight: 500; transition: all 0.2s;
     }
     .contact-link:hover { border-color: var(--green); color: var(--green); }
     .contact-link i { font-size: 18px; color: var(--green); flex-shrink: 0; }
     .contact-cta {
       text-align: center; padding: 2rem 1.5rem;
-      background: var(--bg3); border: 2px solid var(--green-border);
-      border-radius: 10px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 12px;
+      background: var(--bg3); border: 2px solid var(--green-border); border-radius: 10px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
     }
-    .contact-cta h3 { font-size: 1.15rem; font-weight: 800; color: var(--text); }
-    .contact-cta p  { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .contact-cta h3 { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+    .contact-cta p  { font-family: var(--mono); font-size: var(--text-sm); color: var(--muted); }
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--green-dark);
-      padding: 1.4rem 2.5rem;
+    /* ── FOOTER ── */
+    footer { background: var(--green-dark); padding: var(--space-sm) var(--space-lg); }
+    .footer-inner {
+      max-width: var(--max-width); margin: 0 auto; width: 100%;
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-left  { font-family: var(--mono); font-size: 12px; color: var(--green-border); }
     .footer-left span { color: var(--green-mid); font-weight: 500; }
     .footer-right { font-family: var(--mono); font-size: 11px; color: #4ade80; }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero { padding: 2.5rem 1.5rem 2rem; }
-      .hero h1 { font-size: 2rem; }
-      .stats-row { grid-template-columns: repeat(2,1fr); }
-      section { padding: 2rem 1.5rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .about-inner { grid-template-columns: 1fr; }
+    /* ── BREAKPOINTS ── */
+    @media (min-width: 1400px) {
+      :root { --space-lg: 3rem; --space-xl: 5rem; }
+    }
+    @media (max-width: 1023px) {
+      .hero-visual { display: none; }
+      .hero-inner  { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 767px) {
+      .nav-links  { display: none; }
+      .nav-toggle { display: block; }
+      .stats-row  { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .about-inner   { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
-      .nav-bar { padding: 0.85rem 1.5rem; }
+      .footer-inner  { flex-direction: column; gap: 6px; text-align: center; }
+    }
+    @media (max-width: 479px) {
+      .cta-row { flex-direction: column; }
+      .cta-row a { text-align: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stack-grid    { grid-template-columns: repeat(2,1fr); }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── NAVIGATION ─── -->
+  <!-- ── NAV ── -->
   <nav class="nav-bar">
-    <a href="#" class="nav-brand">
-      <span class="bug">bug</span><span class="to">to</span><span class="green">green</span><span class="dot">.com</span>
-    </a>
-    <div class="nav-links">
-      <a class="nav-link" href="#stack">stack</a>
-      <a class="nav-link" href="#projets">projets</a>
-      <a class="nav-link" href="#parcours">parcours</a>
-      <a class="nav-link" href="#contact">contact</a>
-      <a class="nav-cv" href="cv-tahar-khezouz.pdf" download>cv.pdf</a>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <span>bug</span><span class="to">to</span><span class="grn">green</span><span class="dot">.com</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#stack">stack</a>
+        <a class="nav-link" href="#projets">projets</a>
+        <a class="nav-link" href="#parcours">parcours</a>
+        <a class="nav-link" href="#contact">contact</a>
+        <a class="nav-cv"   href="cv-tahar-khezouz.pdf" download>cv.pdf</a>
+      </div>
+      <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
+        <i class="ti ti-menu-2"></i>
+      </button>
+    </div>
+    <div class="nav-mobile" id="nav-mobile">
+      <a href="#stack"    onclick="closeMenu()">stack</a>
+      <a href="#projets"  onclick="closeMenu()">projets</a>
+      <a href="#parcours" onclick="closeMenu()">parcours</a>
+      <a href="#contact"  onclick="closeMenu()">contact</a>
+      <a href="cv-tahar-khezouz.pdf" download>télécharger cv.pdf</a>
     </div>
   </nav>
 
-  <!-- ─── HERO ─── -->
+  <!-- ── HERO ── -->
   <div class="hero">
-    <div class="avail">disponible · remote &amp; hybride · Montréal</div>
-    <h1>
-      Tahar Khezouz
-      <span class="role">QA Engineer</span>
-    </h1>
-    <p>
-      Stratégies de test robustes · Automatisation E2E · CI/CD pipelines<br>
-      Je transforme les bugs en livraisons <span class="pass">vertes ✓</span>
-    </p>
-    <div class="cta-row">
-      <a class="btn-green"      href="#projets">Voir mes projets</a>
-      <a class="btn-green-dark" href="cv-tahar-khezouz.pdf" download>Télécharger le CV</a>
-      <a class="btn-outline"    href="#contact">Me contacter</a>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="avail">disponible · remote &amp; hybride · Montréal</div>
+        <h1>Tahar Khezouz<span class="role">QA Engineer</span></h1>
+        <p class="hero-desc">
+          Stratégies de test robustes · Automatisation E2E · CI/CD pipelines<br>
+          Je transforme les bugs en livraisons <span class="pass">vertes ✓</span>
+        </p>
+        <div class="cta-row">
+          <a class="btn-green"      href="#projets">Voir mes projets</a>
+          <a class="btn-green-dark" href="cv-tahar-khezouz.pdf" download>Télécharger le CV</a>
+          <a class="btn-outline"    href="#contact">Me contacter</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-avatar">TK</div>
+        <div class="hero-badge-stack">
+          <span class="hero-badge">✓ Playwright</span>
+          <span class="hero-badge">✓ CI/CD</span>
+          <span class="hero-badge">✓ OWASP ZAP</span>
+          <span class="hero-badge">✓ TypeScript</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ─── STATS ─── -->
+  <!-- ── STATS ── -->
   <div class="stats-row">
     <div class="stat"><span class="stat-num">54+</span><span class="stat-lbl">cas de test</span></div>
     <div class="stat"><span class="stat-num">10+</span><span class="stat-lbl">outils maîtrisés</span></div>
@@ -358,142 +367,221 @@
     <div class="stat"><span class="stat-num">12</span> <span class="stat-lbl">sem. roadmap QA</span></div>
   </div>
 
-  <!-- ─── STACK ─── -->
+  <!-- ── STACK ── -->
   <section id="stack">
-    <p class="sec-label">// outils &amp; technologies</p>
-    <h2 class="sec-title">Mon stack QA</h2>
-    <div class="stack-grid">
-      <div class="tool-chip"><div class="tool-icon">🎭</div><div><div class="tool-name">Playwright</div><div class="tool-cat">E2E Testing</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">📘</div><div><div class="tool-name">TypeScript</div><div class="tool-cat">Language</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">⚙️</div><div><div class="tool-name">GitHub Actions</div><div class="tool-cat">CI/CD</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">📮</div><div><div class="tool-name">Postman</div><div class="tool-cat">API Testing</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">🔥</div><div><div class="tool-name">JMeter</div><div class="tool-cat">Performance</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">🛡️</div><div><div class="tool-name">OWASP ZAP</div><div class="tool-cat">Security</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">♿</div><div><div class="tool-name">axe / Lighthouse</div><div class="tool-cat">Accessibility</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">📋</div><div><div class="tool-name">Jira</div><div class="tool-cat">Test Management</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">🔍</div><div><div class="tool-name">Snyk</div><div class="tool-cat">Security Scan</div></div></div>
-      <div class="tool-chip"><div class="tool-icon">📚</div><div><div class="tool-name">Confluence</div><div class="tool-cat">Documentation</div></div></div>
+    <div class="sec-inner">
+      <p class="sec-label">// outils &amp; technologies</p>
+      <h2 class="sec-title">Mon stack QA</h2>
+      <div class="stack-grid">
+        <div class="tool-chip"><div class="tool-icon">🎭</div><div><div class="tool-name">Playwright</div><div class="tool-cat">E2E Testing</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">📘</div><div><div class="tool-name">TypeScript</div><div class="tool-cat">Language</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">⚙️</div><div><div class="tool-name">GitHub Actions</div><div class="tool-cat">CI/CD</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">📮</div><div><div class="tool-name">Postman</div><div class="tool-cat">API Testing</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">🔥</div><div><div class="tool-name">JMeter</div><div class="tool-cat">Performance</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">🛡️</div><div><div class="tool-name">OWASP ZAP</div><div class="tool-cat">Security</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">♿</div><div><div class="tool-name">axe / Lighthouse</div><div class="tool-cat">Accessibility</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">📋</div><div><div class="tool-name">Jira</div><div class="tool-cat">Test Management</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">🔍</div><div><div class="tool-name">Snyk</div><div class="tool-cat">Security Scan</div></div></div>
+        <div class="tool-chip"><div class="tool-icon">📚</div><div><div class="tool-name">Confluence</div><div class="tool-cat">Documentation</div></div></div>
+      </div>
     </div>
   </section>
 
-  <!-- ─── PROJETS ─── -->
+  <!-- ── PROJETS ── -->
   <section id="projets">
-    <p class="sec-label">// portfolio</p>
-    <h2 class="sec-title">Projets récents</h2>
-    <div class="projects-grid">
-
-      <a class="proj-card" href="https://github.com/TON_GITHUB/shopflow" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-type">E2E Automation</span><span class="proj-arrow">↗</span></div>
-        <div class="proj-title">ShopFlow — E-commerce QA Suite</div>
-        <div class="proj-desc">Stratégie complète : 54 cas de test, smoke, régression, E2E avec Page Object Model sur un projet e-commerce réel.</div>
-        <div class="proj-tags"><span class="tag">Playwright</span><span class="tag">TypeScript</span><span class="tag">POM</span><span class="tag">CI/CD</span></div>
-      </a>
-
-      <a class="proj-card" href="https://github.com/TON_GITHUB/api-pipeline" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-type">API Testing</span><span class="proj-arrow">↗</span></div>
-        <div class="proj-title">API Regression Pipeline</div>
-        <div class="proj-desc">Suite Newman automatisée pour les endpoints REST, avec reporting HTML et intégration CI/CD complète.</div>
-        <div class="proj-tags"><span class="tag">Postman</span><span class="tag">Newman</span><span class="tag">CI/CD</span><span class="tag">HTML Report</span></div>
-      </a>
-
-      <a class="proj-card" href="https://github.com/TON_GITHUB/load-testing" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-type">Performance</span><span class="proj-arrow">↗</span></div>
-        <div class="proj-title">Load Testing — JMeter</div>
-        <div class="proj-desc">Tests de charge et stress sur un parcours utilisateur critique, analyse des seuils et reporting détaillé.</div>
-        <div class="proj-tags"><span class="tag">JMeter</span><span class="tag">Stress Test</span><span class="tag">Reporting</span></div>
-      </a>
-
-      <div class="proj-card wip">
-        <div class="proj-top"><span class="proj-type">À venir</span></div>
-        <div class="proj-title">Security Testing Dashboard</div>
-        <div class="proj-desc">OWASP ZAP + Snyk dans un pipeline CI/CD avec alertes automatiques sur vulnérabilités détectées.</div>
-        <div class="proj-tags"><span class="tag">OWASP ZAP</span><span class="tag">Snyk</span><span class="tag">WIP</span></div>
+    <div class="sec-inner">
+      <p class="sec-label">// portfolio</p>
+      <h2 class="sec-title">Projets récents</h2>
+      <div class="projects-grid">
+        <a class="proj-card" href="https://github.com/TON_GITHUB/shopflow" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-type">E2E Automation</span><span class="proj-arrow">↗</span></div>
+          <div class="proj-title">ShopFlow — E-commerce QA Suite</div>
+          <div class="proj-desc">Stratégie complète : 54 cas de test, smoke, régression, E2E avec Page Object Model sur un projet e-commerce réel.</div>
+          <div class="proj-tags"><span class="tag">Playwright</span><span class="tag">TypeScript</span><span class="tag">POM</span><span class="tag">CI/CD</span></div>
+        </a>
+        <a class="proj-card" href="https://github.com/TON_GITHUB/api-pipeline" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-type">API Testing</span><span class="proj-arrow">↗</span></div>
+          <div class="proj-title">API Regression Pipeline</div>
+          <div class="proj-desc">Suite Newman automatisée pour les endpoints REST, avec reporting HTML et intégration CI/CD complète.</div>
+          <div class="proj-tags"><span class="tag">Postman</span><span class="tag">Newman</span><span class="tag">CI/CD</span><span class="tag">HTML Report</span></div>
+        </a>
+        <a class="proj-card" href="https://github.com/TON_GITHUB/load-testing" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-type">Performance</span><span class="proj-arrow">↗</span></div>
+          <div class="proj-title">Load Testing — JMeter</div>
+          <div class="proj-desc">Tests de charge et stress sur un parcours utilisateur critique, analyse des seuils et reporting détaillé.</div>
+          <div class="proj-tags"><span class="tag">JMeter</span><span class="tag">Stress Test</span><span class="tag">Reporting</span></div>
+        </a>
+        <div class="proj-card wip">
+          <div class="proj-top"><span class="proj-type">À venir</span></div>
+          <div class="proj-title">Security Testing Dashboard</div>
+          <div class="proj-desc">OWASP ZAP + Snyk dans un pipeline CI/CD avec alertes automatiques sur vulnérabilités détectées.</div>
+          <div class="proj-tags"><span class="tag">OWASP ZAP</span><span class="tag">Snyk</span><span class="tag">WIP</span></div>
+        </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ─── À PROPOS ─── -->
+  <!-- ── À PROPOS ── -->
   <section id="apropos">
-    <p class="sec-label">// à propos</p>
-    <h2 class="sec-title">Qui suis-je ?</h2>
-    <div class="about-inner">
-      <div class="avatar-block">
-        <div class="avatar">TK</div>
-        <div class="name-lbl">Tahar Khezouz</div>
-        <div class="role-lbl">QA Engineer</div>
-        <div class="avail-sm">Disponible maintenant</div>
-      </div>
-      <div class="about-text">
-        <p>Je suis un <strong>QA Engineer</strong> passionné par la qualité logicielle et l'automatisation des tests. Mon objectif : garantir que chaque livraison est <strong>fiable, performante et accessible</strong>.</p>
-        <p>Je maîtrise l'ensemble du cycle de test — stratégie, rédaction de plans, <strong>automatisation E2E</strong>, tests de sécurité et intégration CI/CD. J'applique les pratiques <strong>Shift Left</strong> pour détecter les bugs au plus tôt dans le cycle.</p>
-        <p>Basé à <strong>Montréal</strong> · Ouvert aux opportunités remote &amp; hybrides · Répond sous 24h.</p>
+    <div class="sec-inner">
+      <p class="sec-label">// à propos</p>
+      <h2 class="sec-title">Qui suis-je ?</h2>
+      <div class="about-inner">
+        <div class="avatar-block">
+          <div class="avatar">TK</div>
+          <div class="name-lbl">Tahar Khezouz</div>
+          <div class="role-lbl">QA Engineer</div>
+          <div class="avail-sm">Disponible maintenant</div>
+        </div>
+        <div class="about-text">
+          <p>Je suis un <strong>QA Engineer</strong> passionné par la qualité logicielle et l'automatisation des tests. Mon objectif : garantir que chaque livraison est <strong>fiable, performante et accessible</strong>.</p>
+          <p>Je maîtrise l'ensemble du cycle de test — stratégie, rédaction de plans, <strong>automatisation E2E</strong>, tests de sécurité et intégration CI/CD. J'applique les pratiques <strong>Shift Left</strong> pour détecter les bugs au plus tôt dans le cycle.</p>
+          <p>Basé à <strong>Montréal</strong> · Ouvert aux opportunités remote &amp; hybrides · Répond sous 24h.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── PARCOURS ─── -->
+  <!-- ── PARCOURS ── -->
   <section id="parcours">
-    <p class="sec-label">// parcours</p>
-    <h2 class="sec-title">Formations &amp; certifications</h2>
-    <div class="timeline">
-
-      <div class="tl-item">
-        <div class="tl-date">2024 — 2025</div>
-        <div class="tl-title">Roadmap QA — 12 semaines</div>
-        <div class="tl-detail">Playwright · TypeScript · CI/CD · Security · Accessibility</div>
+    <div class="sec-inner">
+      <p class="sec-label">// parcours</p>
+      <h2 class="sec-title">Formations &amp; certifications</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2024 — 2025</div>
+          <div class="tl-title">Roadmap QA — 12 semaines</div>
+          <div class="tl-detail">Playwright · TypeScript · CI/CD · Security · Accessibility</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024</div>
+          <div class="tl-title">ISTQB Foundation Level</div>
+          <div class="tl-detail">Certification internationale en test logiciel</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Continu</div>
+          <div class="tl-title">Portfolio QA — ShopFlow Project</div>
+          <div class="tl-detail">E-commerce · 54 cas de test · 7 modules · GitHub Actions CI</div>
+        </div>
       </div>
-
-      <div class="tl-item">
-        <div class="tl-date">2024</div>
-        <div class="tl-title">ISTQB Foundation Level</div>
-        <div class="tl-detail">Certification internationale en test logiciel</div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-date">Continu</div>
-        <div class="tl-title">Portfolio QA — ShopFlow Project</div>
-        <div class="tl-detail">E-commerce · 54 cas de test · 7 modules · GitHub Actions CI</div>
-      </div>
-
     </div>
   </section>
 
-  <!-- ─── CONTACT ─── -->
+  <!-- ── CONTACT ── -->
   <section id="contact">
-    <p class="sec-label">// contact</p>
-    <h2 class="sec-title">Travaillons ensemble</h2>
-    <div class="contact-inner">
-
-      <div class="contact-links">
-        <a class="contact-link" href="https://github.com/TON_GITHUB" target="_blank" rel="noopener">
-          <i class="ti ti-brand-github" aria-hidden="true"></i> GitHub — projets &amp; code
-        </a>
-        <a class="contact-link" href="https://linkedin.com/in/TON_LINKEDIN" target="_blank" rel="noopener">
-          <i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn — profil pro
-        </a>
-        <a class="contact-link" href="mailto:hello@bugtogreen.com">
-          <i class="ti ti-mail" aria-hidden="true"></i> hello@bugtogreen.com
-        </a>
-        <a class="contact-link" href="cv-tahar-khezouz.pdf" download>
-          <i class="ti ti-file-download" aria-hidden="true"></i> Télécharger cv-tahar-khezouz.pdf
-        </a>
+    <div class="sec-inner">
+      <p class="sec-label">// contact</p>
+      <h2 class="sec-title">Travaillons ensemble</h2>
+      <div class="contact-inner">
+        <div class="contact-links">
+          <a class="contact-link" href="https://github.com/TON_GITHUB" target="_blank" rel="noopener">
+            <i class="ti ti-brand-github" aria-hidden="true"></i> GitHub — projets &amp; code
+          </a>
+          <a class="contact-link" href="https://linkedin.com/in/TON_LINKEDIN" target="_blank" rel="noopener">
+            <i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn — profil pro
+          </a>
+          <a class="contact-link" href="mailto:hello@bugtogreen.com">
+            <i class="ti ti-mail" aria-hidden="true"></i> hello@bugtogreen.com
+          </a>
+          <a class="contact-link" href="cv-tahar-khezouz.pdf" download>
+            <i class="ti ti-file-download" aria-hidden="true"></i> Télécharger cv-tahar-khezouz.pdf
+          </a>
+        </div>
+        <div class="contact-cta">
+          <h3>Une opportunité ?</h3>
+          <p>Je réponds sous 24h à toute offre de mission, CDI ou collaboration.</p>
+          <a class="btn-green" href="mailto:hello@bugtogreen.com">M'écrire maintenant</a>
+        </div>
       </div>
-
-      <div class="contact-cta">
-        <h3>Une opportunité ?</h3>
-        <p>Je réponds sous 24h à toute offre de mission, CDI ou collaboration.</p>
-        <a class="btn-green" href="mailto:hello@bugtogreen.com">M'écrire maintenant</a>
-      </div>
-
     </div>
   </section>
 
-  <!-- ─── FOOTER ─── -->
+  <!-- ── FOOTER ── -->
   <footer>
-    <span class="footer-left"><span>bugtogreen</span>.com · Tahar Khezouz · QA Engineer</span>
-    <span class="footer-right">© 2026 · Construit avec rigueur QA</span>
+    <div class="footer-inner">
+      <span class="footer-left"><span>bugtogreen</span>.com · Tahar Khezouz · QA Engineer</span>
+      <span class="footer-right">© 2026 · Construit avec rigueur QA</span>
+    </div>
   </footer>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════
+       DÉTECTION DE RÉSOLUTION & ADAPTATION DYNAMIQUE DU LAYOUT
+       Lit la vraie résolution écran du visiteur et ajuste
+       les variables CSS en temps réel.
+    ═══════════════════════════════════════════════════════ */
+    const root = document.documentElement;
+
+    function applyLayout() {
+      const W   = window.innerWidth;           // largeur viewport
+      const H   = window.innerHeight;          // hauteur viewport
+      const DPR = window.devicePixelRatio || 1; // densité pixel (Retina, etc.)
+
+      /* ── typographie fluide ── */
+      const base = Math.max(12, Math.min(15, 10 + W / 160));
+      root.style.setProperty('--text-base', base + 'px');
+      root.style.setProperty('--text-sm',   (base - 2) + 'px');
+      root.style.setProperty('--text-xs',   (base - 3) + 'px');
+      root.style.setProperty('--text-md',   (base + 1) + 'px');
+
+      /* ── titre hero fluide ── */
+      const h1 = Math.max(1.5, Math.min(3.6, W / 330));
+      root.style.setProperty('--text-xxl', h1 + 'rem');
+
+      /* ── titre section fluide ── */
+      const lg = Math.max(1.0, Math.min(1.6, W / 700));
+      root.style.setProperty('--text-lg', lg + 'rem');
+
+      /* ── espacements fluides ── */
+      const sp = Math.max(1.0, Math.min(2.8, W / 500));
+      root.style.setProperty('--space-lg', sp + 'rem');
+      root.style.setProperty('--space-xl', (sp * 1.55) + 'rem');
+      root.style.setProperty('--space-md', (sp * 0.58) + 'rem');
+      root.style.setProperty('--space-sm', (sp * 0.38) + 'rem');
+
+      /* ── largeur max selon monitor ── */
+      const maxW = W >= 1600 ? '1400px' : W >= 1200 ? '1200px' : '100%';
+      root.style.setProperty('--max-width', maxW);
+
+      /* ── gap colonnes ── */
+      const gap = W < 480 ? '8px' : W < 768 ? '10px' : '14px';
+      root.style.setProperty('--col-gap', gap);
+
+      /* ── hauteur nav ── */
+      root.style.setProperty('--nav-height', W < 480 ? '48px' : '56px');
+
+      /* ── Retina / haute densité : légère réduction spacing ── */
+      if (DPR >= 2 && W >= 1200) {
+        root.style.setProperty('--space-lg', (sp * 0.88) + 'rem');
+      }
+    }
+
+    applyLayout();
+    window.addEventListener('resize', applyLayout);
+
+    /* ── hamburger mobile ── */
+    function toggleMenu() {
+      document.getElementById('nav-mobile').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('nav-mobile').classList.remove('open');
+    }
+
+    /* ── surlignage nav actif au scroll ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => {
+            l.style.color = l.getAttribute('href') === '#' + e.target.id
+              ? 'var(--green)' : '';
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => io.observe(s));
+  </script>
 
 </body>
 </html>
