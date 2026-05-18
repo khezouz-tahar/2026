@@ -3,488 +3,496 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tahar — QA Engineer & Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <title>Tahar Khezouz — QA Engineer | bugtogreen.com</title>
+  <meta name="description" content="QA Engineer spécialisé en automatisation E2E, CI/CD, tests de sécurité et accessibilité. Disponible pour missions et collaborations à Montréal." />
+  <meta name="keywords" content="QA Engineer, Playwright, TypeScript, GitHub Actions, Postman, JMeter, OWASP ZAP, Montréal" />
+  <meta property="og:title" content="Tahar Khezouz — QA Engineer" />
+  <meta property="og:description" content="Stratégies de test robustes · Automatisation E2E · CI/CD pipelines" />
+  <meta property="og:url" content="https://www.bugtogreen.com" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0b0c0f;
-      --bg2: #13141a;
-      --bg3: #1c1e27;
-      --accent: #00e5a0;
-      --accent2: #0af;
-      --text: #ecedf2;
-      --muted: #7a7d8c;
-      --border: rgba(255,255,255,0.07);
-      --font-heading: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-mono: 'DM Mono', monospace;
+      --bg:           #ffffff;
+      --bg2:          #f6fdf8;
+      --bg3:          #f0fdf4;
+      --green:        #16a34a;
+      --green2:       #15803d;
+      --green-mid:    #22c55e;
+      --green-light:  #dcfce7;
+      --green-border: #bbf7d0;
+      --green-dark:   #14532d;
+      --text:         #111827;
+      --muted:        #6b7280;
+      --border:       #e5e7eb;
+      --mono:         'DM Mono', monospace;
+      --head:         'Syne', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
+      font-family: var(--head);
+      color: var(--text);
       background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
+      line-height: 1.5;
     }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 2.5rem;
-      background: rgba(11,12,15,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    /* ─── NAVIGATION ─── */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      padding: 0.85rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--green);
+      box-shadow: 0 1px 8px rgba(22,163,74,0.08);
     }
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
+    .nav-brand { font-family: var(--mono); font-size: 15px; font-weight: 500; text-decoration: none; color: inherit; }
+    .nav-brand .bug   { color: var(--text); }
+    .nav-brand .to    { color: var(--muted); }
+    .nav-brand .green { color: var(--green); }
+    .nav-brand .dot   { color: #d1d5db; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-link  { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: var(--green); }
     .nav-cv {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--accent) !important;
-      border: 1px solid rgba(0,229,160,0.35);
-      padding: 5px 14px;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s !important;
+      font-family: var(--mono); font-size: 11px;
+      background: var(--green); color: #fff;
+      padding: 5px 14px; border-radius: 5px; text-decoration: none;
+      transition: background 0.2s;
     }
-    .nav-cv:hover {
-      background: rgba(0,229,160,0.1);
-      color: var(--accent) !important;
-    }
+    .nav-cv:hover { background: var(--green2); }
 
-    /* HERO */
+    /* ─── HERO ─── */
     .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 6rem 2.5rem 4rem;
-      max-width: 1100px; margin: 0 auto;
+      background: #fff;
+      padding: 4rem 2.5rem 3rem;
+      border-bottom: 1px solid var(--border);
       position: relative;
+      overflow: hidden;
     }
-    .hero-content { max-width: 560px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--accent);
-      border: 1px solid rgba(0,229,160,0.25);
-      background: rgba(0,229,160,0.06);
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 2rem;
-      letter-spacing: 0.06em;
-    }
-    .hero-badge::before {
+    .hero::before {
       content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-    h1 .accent { color: var(--accent); }
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 520px;
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 0.75rem 1.6rem;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #0b0c0f;
-    }
-    .btn-primary:hover { background: #00ffb3; transform: translateY(-1px); }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.25); background: var(--bg2); }
-    .btn-cv {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid rgba(0,229,160,0.4);
-    }
-    .btn-cv:hover { background: rgba(0,229,160,0.08); border-color: var(--accent); transform: translateY(-1px); }
-
-    /* HERO IMAGE */
-    .hero-image {
-      position: absolute; right: -20px; top: 50%;
-      transform: translateY(-50%);
-      width: 460px;
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%);
       pointer-events: none;
-      filter: drop-shadow(0 0 40px rgba(0,229,160,0.12));
-      opacity: 0.92;
     }
-    @media (max-width: 900px) { .hero-image { display: none; } }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-mid), var(--green2));
+    }
+    .avail {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--green-light);
+      border: 1px solid var(--green-border);
+      color: var(--green2);
+      font-family: var(--mono); font-size: 11px;
+      padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 1.4rem; font-weight: 500;
+    }
+    .avail::before {
+      content: '';
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green-mid);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-    /* SECTIONS */
-    section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
+    .hero h1 {
+      font-size: 3rem; font-weight: 800;
+      line-height: 1.1; margin-bottom: 0.6rem;
+      letter-spacing: -0.03em;
     }
-    h2 {
-      font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 1rem;
+    .hero h1 .role { color: var(--green); display: block; }
+    .hero p {
+      font-family: var(--mono); font-size: 13px;
+      color: var(--muted); max-width: 520px;
+      line-height: 1.9; margin-bottom: 1.8rem;
     }
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      max-width: 1100px; margin: 0 auto;
-    }
+    .hero p .pass { color: var(--green); font-weight: 500; }
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    /* STACK */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-      margin-top: 2.5rem;
+    /* ─── BUTTONS ─── */
+    .btn-green {
+      background: var(--green); color: #fff;
+      font-family: var(--head); font-weight: 700; font-size: 13px;
+      padding: 11px 24px; border-radius: 6px; border: none;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.2s;
     }
-    .stack-item {
-      background: var(--bg2);
+    .btn-green:hover { background: var(--green2); }
+    .btn-green-dark {
+      background: var(--green-dark); color: #fff;
+      font-family: var(--head); font-weight: 700; font-size: 13px;
+      padding: 11px 24px; border-radius: 6px; border: none;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-green-dark:hover { background: #0f3d20; }
+    .btn-outline {
+      background: #fff; color: var(--text);
+      font-family: var(--head); font-weight: 500; font-size: 13px;
+      padding: 11px 24px; border-radius: 6px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      display: flex; flex-direction: column; gap: 6px;
-      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: all 0.2s;
     }
-    .stack-item:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-2px); }
-    .stack-icon {
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      background: rgba(0,229,160,0.1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-    }
-    .stack-name { font-size: 13px; font-weight: 500; }
-    .stack-cat { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
 
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 2.5rem;
-    }
-    .project-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      display: flex; flex-direction: column; gap: 12px;
-      transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none; color: inherit;
-    }
-    .project-card:hover { border-color: rgba(0,170,255,0.35); transform: translateY(-3px); }
-    .project-header { display: flex; align-items: center; justify-content: space-between; }
-    .project-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 3px 10px;
-      border-radius: 100px;
-      letter-spacing: 0.06em;
-    }
-    .tag-qa { background: rgba(0,229,160,0.1); color: var(--accent); border: 1px solid rgba(0,229,160,0.2); }
-    .tag-dev { background: rgba(0,170,255,0.1); color: var(--accent2); border: 1px solid rgba(0,170,255,0.2); }
-    .project-arrow { color: var(--muted); font-size: 18px; }
-    .project-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; }
-    .project-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .project-techs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
-    .tech-pill {
-      font-size: 11px; font-family: var(--font-mono);
-      padding: 3px 10px;
+    /* ─── STATS ─── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4,1fr);
       background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      color: var(--muted);
+      border-top: 1px solid var(--green-border);
+      border-bottom: 1px solid var(--green-border);
+    }
+    .stat {
+      padding: 1.3rem 1rem; text-align: center;
+      border-right: 1px solid var(--green-border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--green); display: block; line-height: 1;
+    }
+    .stat-lbl {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--muted); margin-top: 5px; display: block;
     }
 
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-top: 2.5rem;
+    /* ─── SECTIONS ─── */
+    section { padding: 2.5rem 2.5rem; border-bottom: 1px solid var(--border); background: #fff; }
+    section:nth-of-type(even) { background: var(--bg2); }
+    .sec-label {
+      font-family: var(--mono); font-size: 10px; color: var(--green);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.5rem; font-weight: 500;
     }
-    @media (max-width: 680px) { .about-grid { grid-template-columns: 1fr; } }
-    .about-text { color: var(--muted); line-height: 1.9; }
+    .sec-title {
+      font-size: 1.4rem; font-weight: 800;
+      margin-bottom: 1.6rem; letter-spacing: -0.02em; color: var(--text);
+    }
+
+    /* ─── STACK ─── */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 10px; }
+    .tool-chip {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      transition: all 0.2s;
+    }
+    .tool-chip:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(22,163,74,0.1); }
+    .tool-icon {
+      width: 36px; height: 36px; border-radius: 6px;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .tool-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .tool-cat  { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+    .proj-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.4rem;
+      transition: all 0.2s; text-decoration: none;
+      color: inherit; display: block;
+    }
+    .proj-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 4px 20px rgba(22,163,74,0.1);
+      transform: translateY(-2px);
+    }
+    .proj-card.wip { border-style: dashed; opacity: 0.55; cursor: default; pointer-events: none; }
+    .proj-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .proj-type { font-family: var(--mono); font-size: 10px; color: var(--green); font-weight: 500; }
+    .proj-arrow { font-size: 13px; color: var(--muted); }
+    .proj-title { font-size: 14px; font-weight: 700; margin-bottom: 7px; line-height: 1.3; color: var(--text); }
+    .proj-desc  { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+    .proj-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      background: var(--green-light); color: var(--green2);
+      font-family: var(--mono); font-size: 10px;
+      padding: 2px 9px; border-radius: 4px; font-weight: 500;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-inner { display: grid; grid-template-columns: 170px 1fr; gap: 2.5rem; align-items: start; }
+    .avatar-block { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .avatar {
+      width: 92px; height: 92px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green2), var(--green-mid));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 800; color: #fff;
+      border: 3px solid var(--green-border);
+    }
+    .name-lbl  { font-size: 14px; font-weight: 700; color: var(--text); text-align: center; }
+    .role-lbl  { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .avail-sm  {
+      background: var(--green-light); border: 1px solid var(--green-border);
+      color: var(--green2); font-family: var(--mono); font-size: 10px;
+      padding: 4px 10px; border-radius: 12px; text-align: center; font-weight: 500;
+    }
+    .about-text p { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.9; margin-bottom: 0.9rem; }
     .about-text strong { color: var(--text); font-weight: 500; }
-    .stats { display: flex; flex-direction: column; gap: 16px; }
-    .stat-row {
-      background: var(--bg2);
-      border: 1px solid var(--border);
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      border-left: 3px solid var(--green-border);
+      padding-left: 1.6rem;
+      display: flex; flex-direction: column; gap: 1.4rem;
+    }
+    .tl-item { position: relative; }
+    .tl-item::before {
+      content: '';
+      position: absolute; left: -1.9rem; top: 4px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--green); border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--green-border);
+    }
+    .tl-date  { font-family: var(--mono); font-size: 10px; color: var(--green); margin-bottom: 3px; font-weight: 500; }
+    .tl-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; color: var(--text); }
+    .tl-detail{ font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+    /* ─── CONTACT ─── */
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: stretch; }
+    .contact-links { display: flex; flex-direction: column; gap: 9px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px;
+      color: var(--text); text-decoration: none;
+      font-size: 13px; font-weight: 500; transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--green); color: var(--green); }
+    .contact-link i { font-size: 18px; color: var(--green); flex-shrink: 0; }
+    .contact-cta {
+      text-align: center; padding: 2rem 1.5rem;
+      background: var(--bg3); border: 2px solid var(--green-border);
       border-radius: 10px;
-      padding: 1rem 1.25rem;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+    }
+    .contact-cta h3 { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+    .contact-cta p  { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--green-dark);
+      padding: 1.4rem 2.5rem;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .stat-label { font-size: 13px; color: var(--muted); }
-    .stat-value { font-family: var(--font-mono); font-size: 22px; font-weight: 500; color: var(--accent); }
+    .footer-left  { font-family: var(--mono); font-size: 12px; color: var(--green-border); }
+    .footer-left span { color: var(--green-mid); font-weight: 500; }
+    .footer-right { font-family: var(--mono); font-size: 11px; color: #4ade80; }
 
-    /* CONTACT */
-    .contact-box {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-      text-align: center;
-      margin-top: 2.5rem;
-    }
-    .contact-box p { color: var(--muted); max-width: 480px; margin: 1rem auto 2rem; }
-    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .contact-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 0.65rem 1.3rem;
-      font-size: 13px; font-family: var(--font-mono);
-      border-radius: 8px;
-      text-decoration: none;
-      background: var(--bg3);
-      color: var(--text);
-      border: 1px solid var(--border);
-      transition: all 0.2s;
-    }
-    .contact-link:hover { border-color: rgba(0,229,160,0.35); color: var(--accent); }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 640px) {
-      nav { padding: 1rem 1.2rem; }
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
       .nav-links { display: none; }
-      section { padding: 3.5rem 1.2rem; }
-      .hero { padding: 5rem 1.2rem 3rem; }
-      .hero-grid { display: none; }
-      .contact-box { padding: 2rem 1.2rem; }
+      .hero { padding: 2.5rem 1.5rem 2rem; }
+      .hero h1 { font-size: 2rem; }
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      section { padding: 2rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+      .nav-bar { padding: 0.85rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <span class="nav-logo">tahar.dev</span>
-    <ul class="nav-links">
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#a-propos">À propos</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="cv-tahar-khezouz.html" class="nav-cv" target="_blank">📄 Mon CV</a></li>
-    </ul>
+  <!-- ─── NAVIGATION ─── -->
+  <nav class="nav-bar">
+    <a href="#" class="nav-brand">
+      <span class="bug">bug</span><span class="to">to</span><span class="green">green</span><span class="dot">.com</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#stack">stack</a>
+      <a class="nav-link" href="#projets">projets</a>
+      <a class="nav-link" href="#parcours">parcours</a>
+      <a class="nav-link" href="#contact">contact</a>
+      <a class="nav-cv" href="cv-tahar-khezouz.pdf" download>cv.pdf</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <div style="position:relative; overflow:hidden;">
-    <div class="hero">
-      <div class="hero-content">
-        <div class="hero-badge">Disponible pour missions &amp; collaborations</div>
-        <h1>QA Engineer<br>&amp; <span class="accent">Developer</span></h1>
-        <p class="hero-sub">
-          Je conçois des stratégies de test robustes, automatise les pipelines CI/CD,
-          et garantis la qualité logicielle de bout en bout — du code à la production.
-        </p>
-        <div class="hero-ctas">
-          <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
-          <a href="cv-tahar-khezouz.html" class="btn btn-cv" target="_blank">📄 Mon CV</a>
-          <a href="#contact" class="btn btn-outline">Me contacter</a>
-        </div>
-      </div>
-      <img src="logo.png" alt="BugToGreen" class="hero-image" />
+  <!-- ─── HERO ─── -->
+  <div class="hero">
+    <div class="avail">disponible · remote &amp; hybride · Montréal</div>
+    <h1>
+      Tahar Khezouz
+      <span class="role">QA Engineer</span>
+    </h1>
+    <p>
+      Stratégies de test robustes · Automatisation E2E · CI/CD pipelines<br>
+      Je transforme les bugs en livraisons <span class="pass">vertes ✓</span>
+    </p>
+    <div class="cta-row">
+      <a class="btn-green"      href="#projets">Voir mes projets</a>
+      <a class="btn-green-dark" href="cv-tahar-khezouz.pdf" download>Télécharger le CV</a>
+      <a class="btn-outline"    href="#contact">Me contacter</a>
     </div>
   </div>
 
-  <hr class="divider" />
+  <!-- ─── STATS ─── -->
+  <div class="stats-row">
+    <div class="stat"><span class="stat-num">54+</span><span class="stat-lbl">cas de test</span></div>
+    <div class="stat"><span class="stat-num">10+</span><span class="stat-lbl">outils maîtrisés</span></div>
+    <div class="stat"><span class="stat-num">3</span>  <span class="stat-lbl">projets portfolio</span></div>
+    <div class="stat"><span class="stat-num">12</span> <span class="stat-lbl">sem. roadmap QA</span></div>
+  </div>
 
-  <!-- STACK -->
+  <!-- ─── STACK ─── -->
   <section id="stack">
-    <p class="section-label">// outils &amp; technologies</p>
-    <h2>Mon stack</h2>
+    <p class="sec-label">// outils &amp; technologies</p>
+    <h2 class="sec-title">Mon stack QA</h2>
     <div class="stack-grid">
-      <div class="stack-item"><div class="stack-icon">🎭</div><span class="stack-name">Playwright</span><span class="stack-cat">E2E Testing</span></div>
-      <div class="stack-item"><div class="stack-icon">📘</div><span class="stack-name">TypeScript</span><span class="stack-cat">Language</span></div>
-      <div class="stack-item"><div class="stack-icon">⚙️</div><span class="stack-name">GitHub Actions</span><span class="stack-cat">CI/CD</span></div>
-      <div class="stack-item"><div class="stack-icon">📮</div><span class="stack-name">Postman</span><span class="stack-cat">API Testing</span></div>
-      <div class="stack-item"><div class="stack-icon">🔥</div><span class="stack-name">JMeter</span><span class="stack-cat">Performance</span></div>
-      <div class="stack-item"><div class="stack-icon">🛡️</div><span class="stack-name">OWASP ZAP</span><span class="stack-cat">Security</span></div>
-      <div class="stack-item"><div class="stack-icon">♿</div><span class="stack-name">axe / Lighthouse</span><span class="stack-cat">Accessibility</span></div>
-      <div class="stack-item"><div class="stack-icon">📋</div><span class="stack-name">Jira</span><span class="stack-cat">Test Management</span></div>
-      <div class="stack-item"><div class="stack-icon">📚</div><span class="stack-name">Confluence</span><span class="stack-cat">Documentation</span></div>
-      <div class="stack-item"><div class="stack-icon">🔍</div><span class="stack-name">Snyk</span><span class="stack-cat">Security Scan</span></div>
+      <div class="tool-chip"><div class="tool-icon">🎭</div><div><div class="tool-name">Playwright</div><div class="tool-cat">E2E Testing</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">📘</div><div><div class="tool-name">TypeScript</div><div class="tool-cat">Language</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">⚙️</div><div><div class="tool-name">GitHub Actions</div><div class="tool-cat">CI/CD</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">📮</div><div><div class="tool-name">Postman</div><div class="tool-cat">API Testing</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">🔥</div><div><div class="tool-name">JMeter</div><div class="tool-cat">Performance</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">🛡️</div><div><div class="tool-name">OWASP ZAP</div><div class="tool-cat">Security</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">♿</div><div><div class="tool-name">axe / Lighthouse</div><div class="tool-cat">Accessibility</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">📋</div><div><div class="tool-name">Jira</div><div class="tool-cat">Test Management</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">🔍</div><div><div class="tool-name">Snyk</div><div class="tool-cat">Security Scan</div></div></div>
+      <div class="tool-chip"><div class="tool-icon">📚</div><div><div class="tool-name">Confluence</div><div class="tool-cat">Documentation</div></div></div>
     </div>
   </section>
 
-  <hr class="divider" />
-
-  <!-- PROJETS -->
+  <!-- ─── PROJETS ─── -->
   <section id="projets">
-    <p class="section-label">// portfolio</p>
-    <h2>Projets récents</h2>
+    <p class="sec-label">// portfolio</p>
+    <h2 class="sec-title">Projets récents</h2>
     <div class="projects-grid">
 
-      <a href="#" class="project-card">
-        <div class="project-header">
-          <span class="project-tag tag-qa">QA Automation</span>
-          <span class="project-arrow">↗</span>
-        </div>
-        <p class="project-title">ShopFlow — E-commerce QA Suite</p>
-        <p class="project-desc">Stratégie de test complète sur un e-commerce réel : 54 cas de test, smoke, régression, E2E avec Page Object Model.</p>
-        <div class="project-techs">
-          <span class="tech-pill">Playwright</span>
-          <span class="tech-pill">TypeScript</span>
-          <span class="tech-pill">GitHub Actions</span>
-        </div>
+      <a class="proj-card" href="https://github.com/TON_GITHUB/shopflow" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-type">E2E Automation</span><span class="proj-arrow">↗</span></div>
+        <div class="proj-title">ShopFlow — E-commerce QA Suite</div>
+        <div class="proj-desc">Stratégie complète : 54 cas de test, smoke, régression, E2E avec Page Object Model sur un projet e-commerce réel.</div>
+        <div class="proj-tags"><span class="tag">Playwright</span><span class="tag">TypeScript</span><span class="tag">POM</span><span class="tag">CI/CD</span></div>
       </a>
 
-      <a href="#" class="project-card">
-        <div class="project-header">
-          <span class="project-tag tag-dev">API Testing</span>
-          <span class="project-arrow">↗</span>
-        </div>
-        <p class="project-title">API Regression Pipeline</p>
-        <p class="project-desc">Suite Newman automatisée pour tester les endpoints REST, avec reporting HTML et intégration CI/CD.</p>
-        <div class="project-techs">
-          <span class="tech-pill">Postman</span>
-          <span class="tech-pill">Newman</span>
-          <span class="tech-pill">CI/CD</span>
-        </div>
+      <a class="proj-card" href="https://github.com/TON_GITHUB/api-pipeline" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-type">API Testing</span><span class="proj-arrow">↗</span></div>
+        <div class="proj-title">API Regression Pipeline</div>
+        <div class="proj-desc">Suite Newman automatisée pour les endpoints REST, avec reporting HTML et intégration CI/CD complète.</div>
+        <div class="proj-tags"><span class="tag">Postman</span><span class="tag">Newman</span><span class="tag">CI/CD</span><span class="tag">HTML Report</span></div>
       </a>
 
-      <a href="#" class="project-card">
-        <div class="project-header">
-          <span class="project-tag tag-qa">Performance</span>
-          <span class="project-arrow">↗</span>
-        </div>
-        <p class="project-title">Load Testing — JMeter</p>
-        <p class="project-desc">Tests de charge et de stress sur un parcours utilisateur critique, avec analyse des seuils de performance.</p>
-        <div class="project-techs">
-          <span class="tech-pill">JMeter</span>
-          <span class="tech-pill">Reporting</span>
-        </div>
+      <a class="proj-card" href="https://github.com/TON_GITHUB/load-testing" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-type">Performance</span><span class="proj-arrow">↗</span></div>
+        <div class="proj-title">Load Testing — JMeter</div>
+        <div class="proj-desc">Tests de charge et stress sur un parcours utilisateur critique, analyse des seuils et reporting détaillé.</div>
+        <div class="proj-tags"><span class="tag">JMeter</span><span class="tag">Stress Test</span><span class="tag">Reporting</span></div>
       </a>
+
+      <div class="proj-card wip">
+        <div class="proj-top"><span class="proj-type">À venir</span></div>
+        <div class="proj-title">Security Testing Dashboard</div>
+        <div class="proj-desc">OWASP ZAP + Snyk dans un pipeline CI/CD avec alertes automatiques sur vulnérabilités détectées.</div>
+        <div class="proj-tags"><span class="tag">OWASP ZAP</span><span class="tag">Snyk</span><span class="tag">WIP</span></div>
+      </div>
 
     </div>
   </section>
 
-  <hr class="divider" />
-
-  <!-- À PROPOS -->
-  <section id="a-propos">
-    <p class="section-label">// à propos</p>
-    <h2>Qui suis-je ?</h2>
-    <div class="about-grid">
-      <div>
-        <p class="about-text">
-          Je suis un <strong>QA Engineer & développeur</strong> passionné par la qualité logicielle et l'automatisation des tests.
-          Mon objectif : garantir que chaque fonctionnalité livrée est fiable, performante et accessible.
-        </p>
-        <br/>
-        <p class="about-text">
-          Je maîtrise l'ensemble du cycle de test — de la <strong>stratégie</strong> et la rédaction de plans de test,
-          jusqu'à l'<strong>automatisation E2E</strong>, les tests de sécurité et l'intégration CI/CD.
-          J'applique les pratiques <strong>Shift Left</strong> pour détecter les bugs au plus tôt.
-        </p>
-        <br/>
-        <p class="about-text">
-          Basé à <strong>Montréal</strong> · Ouvert aux opportunités remote &amp; hybrides.
-        </p>
+  <!-- ─── À PROPOS ─── -->
+  <section id="apropos">
+    <p class="sec-label">// à propos</p>
+    <h2 class="sec-title">Qui suis-je ?</h2>
+    <div class="about-inner">
+      <div class="avatar-block">
+        <div class="avatar">TK</div>
+        <div class="name-lbl">Tahar Khezouz</div>
+        <div class="role-lbl">QA Engineer</div>
+        <div class="avail-sm">Disponible maintenant</div>
       </div>
-      <div class="stats">
-        <div class="stat-row">
-          <span class="stat-label">Cas de test rédigés</span>
-          <span class="stat-value">54+</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Outils maîtrisés</span>
-          <span class="stat-value">10+</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Pipeline CI/CD</span>
-          <span class="stat-value">GitHub</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Roadmap QA</span>
-          <span class="stat-value">12 sem.</span>
-        </div>
+      <div class="about-text">
+        <p>Je suis un <strong>QA Engineer</strong> passionné par la qualité logicielle et l'automatisation des tests. Mon objectif : garantir que chaque livraison est <strong>fiable, performante et accessible</strong>.</p>
+        <p>Je maîtrise l'ensemble du cycle de test — stratégie, rédaction de plans, <strong>automatisation E2E</strong>, tests de sécurité et intégration CI/CD. J'applique les pratiques <strong>Shift Left</strong> pour détecter les bugs au plus tôt dans le cycle.</p>
+        <p>Basé à <strong>Montréal</strong> · Ouvert aux opportunités remote &amp; hybrides · Répond sous 24h.</p>
       </div>
     </div>
   </section>
 
-  <hr class="divider" />
+  <!-- ─── PARCOURS ─── -->
+  <section id="parcours">
+    <p class="sec-label">// parcours</p>
+    <h2 class="sec-title">Formations &amp; certifications</h2>
+    <div class="timeline">
 
-  <!-- CONTACT -->
+      <div class="tl-item">
+        <div class="tl-date">2024 — 2025</div>
+        <div class="tl-title">Roadmap QA — 12 semaines</div>
+        <div class="tl-detail">Playwright · TypeScript · CI/CD · Security · Accessibility</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div class="tl-title">ISTQB Foundation Level</div>
+        <div class="tl-detail">Certification internationale en test logiciel</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">Continu</div>
+        <div class="tl-title">Portfolio QA — ShopFlow Project</div>
+        <div class="tl-detail">E-commerce · 54 cas de test · 7 modules · GitHub Actions CI</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
   <section id="contact">
-    <p class="section-label">// contact</p>
-    <h2>Travaillons ensemble</h2>
-    <div class="contact-box">
-      <h2 style="font-family:'Syne',sans-serif;">Une mission ? Un projet ?</h2>
-      <p>N'hésite pas à me contacter via GitHub, LinkedIn ou par email. Je réponds sous 24h.</p>
+    <p class="sec-label">// contact</p>
+    <h2 class="sec-title">Travaillons ensemble</h2>
+    <div class="contact-inner">
+
       <div class="contact-links">
-        <a href="https://github.com" class="contact-link">GitHub</a>
-        <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
-        <a href="mailto:hello@tahar.dev" class="contact-link">Email</a>
-        <a href="cv-tahar-khezouz.html" class="contact-link" target="_blank">📄 Mon CV</a>
+        <a class="contact-link" href="https://github.com/TON_GITHUB" target="_blank" rel="noopener">
+          <i class="ti ti-brand-github" aria-hidden="true"></i> GitHub — projets &amp; code
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/TON_LINKEDIN" target="_blank" rel="noopener">
+          <i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn — profil pro
+        </a>
+        <a class="contact-link" href="mailto:hello@bugtogreen.com">
+          <i class="ti ti-mail" aria-hidden="true"></i> hello@bugtogreen.com
+        </a>
+        <a class="contact-link" href="cv-tahar-khezouz.pdf" download>
+          <i class="ti ti-file-download" aria-hidden="true"></i> Télécharger cv-tahar-khezouz.pdf
+        </a>
       </div>
+
+      <div class="contact-cta">
+        <h3>Une opportunité ?</h3>
+        <p>Je réponds sous 24h à toute offre de mission, CDI ou collaboration.</p>
+        <a class="btn-green" href="mailto:hello@bugtogreen.com">M'écrire maintenant</a>
+      </div>
+
     </div>
   </section>
 
+  <!-- ─── FOOTER ─── -->
   <footer>
-    &copy; 2026 Tahar &nbsp;·&nbsp; Construit avec du HTML pur &amp; de la rigueur QA
+    <span class="footer-left"><span>bugtogreen</span>.com · Tahar Khezouz · QA Engineer</span>
+    <span class="footer-right">© 2026 · Construit avec rigueur QA</span>
   </footer>
 
 </body>
